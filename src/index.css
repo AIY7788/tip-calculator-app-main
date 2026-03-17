@@ -11,14 +11,30 @@
   --color-grey-400: hsl(184 14% 56%);
   --color-grey-200: hsl(185 41% 84%);
   --color-grey-50: hsl(189 47% 97%);
+  --color-red-600: hsl(354, 90%, 61%)
   --color-white: hsl(0 100% 100%);
+
+  /* Colors - Hover */
+  --color-primary-hover: hsl(from var(--color-primary) h s calc(l + 30));
 
   /* Typography */
   --font-space-mono: "Space Mono", monospace;
 
   /* Font sizes */
-  --text-input: 24px;
+  --text-input: 1.5rem;
 
   /* Font weights */
   --font-bold: 700;
+}
+
+@layer base {
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin:0;
+  }
+  /* Firefox */
+  input[type=number] {
+    -moz-appearance: textfield;
+  }
 }
