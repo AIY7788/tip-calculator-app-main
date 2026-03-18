@@ -7,14 +7,14 @@ export const BillInput = () => {
   return (
     <div>
       <label htmlFor="bill">Bill</label>
-      <div className="flex items-center bg-gray-200 px-3 mt-2 rounded-sm">
+      <div className="flex items-center bg-gray-200 px-3 mt-2 rounded-sm border border-transparent focus-within:bg-primary/10 focus-within:ring-1 focus-within:ring-primary transition duration-300">
         <IconDollar />
         <input
           type="number"
           name="bill"
           id="bill"
           placeholder="0"
-          className="w-full text-green-900 text-input text-end outline-none py-1 appearance-none"
+          className="w-full text-green-900 text-input text-end outline-none appearance-none"
         />
       </div>
     </div>
@@ -33,23 +33,23 @@ export const SelectTip = () => {
               name="tip_selection"
               id={"tip_" + t}
               value={Number(t)}
-              className="peer hidden"
+              className="peer/tip hidden"
             />
 
             <label
               htmlFor={"tip_" + t}
-              className="text-center w-full rounded-sm px-2 py-1 peer-checked:bg-primary peer-checked:text-green-900 bg-green-900 text-white hover:bg-primary-hover transition-colors duration-300 cursor-pointer md:text-lg"
+              className="text-center w-full rounded-sm px-2 py-1 peer-checked/tip:bg-primary peer-checked/tip:text-green-900 bg-green-900 text-white hover:bg-primary-hover transition-colors duration-300 cursor-pointer md:text-lg"
             >
               {t === "Custom" ? t : `${t}%`}
             </label>
           </div>
         ))}
-        <button
-          type="button"
-          className="bg-gray-200 rounded-sm cursor-pointer md:text-base"
-        >
-          Custom
-        </button>
+        <input
+          type="number"
+          name="custom"
+          placeholder="Custom"
+          className="bg-gray-200 text-end px-2 rounded-sm cursor-pointer md:text-base outline-none focus:placeholder:text-transparent placeholder:text-center border border-transparent focus-within:bg-primary/10 focus-within:ring-1 focus-within:ring-primary transition duration-300"
+        />
       </div>
     </div>
   );
@@ -59,14 +59,14 @@ export const NumPeopleInput = () => {
   return (
     <div>
       <label htmlFor="num_people">Number of People</label>
-      <div className="flex items-center bg-gray-200 px-3 mt-2 rounded-sm">
+      <div className="flex items-center bg-gray-200 px-3 mt-2 rounded-sm border border-transparent focus-within:bg-primary/10 focus-within:ring-1 focus-within:ring-primary transition duration-300">
         <IconPerson />
         <input
           type="number"
           name="num_people"
           id="num_people"
           placeholder="0"
-          className="w-full text-green-900 text-input text-end outline-none py-1 appearance-none"
+          className="w-full text-green-900 text-input text-end outline-none appearance-none"
         />
       </div>
     </div>
