@@ -6,7 +6,10 @@ const tips = ["5", "10", "15", "25", "50"];
 export const BillInput = () => {
   return (
     <div>
-      <label htmlFor="bill">Bill</label>
+      <div className="flex items-center justify-between">
+        <label htmlFor="bill">Bill</label>
+        <span className="text-red-600">Can't be zero</span>
+      </div>
       <div className="flex items-center bg-gray-200 px-3 mt-2 rounded-sm border border-transparent focus-within:bg-primary/10 focus-within:ring-1 focus-within:ring-primary transition duration-300">
         <IconDollar />
         <input
@@ -58,7 +61,10 @@ export const SelectTip = () => {
 export const NumPeopleInput = () => {
   return (
     <div>
-      <label htmlFor="num_people">Number of People</label>
+      <div className="flex items-center justify-between">
+        <label htmlFor="num_people">Number of People</label>
+        <span className="text-red-600">Can't be zero</span>
+      </div>
       <div className="flex items-center bg-gray-200 px-3 mt-2 rounded-sm border border-transparent focus-within:bg-primary/10 focus-within:ring-1 focus-within:ring-primary transition duration-300">
         <IconPerson />
         <input
