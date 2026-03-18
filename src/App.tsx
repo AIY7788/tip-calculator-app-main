@@ -4,7 +4,7 @@ import TipSummary from "./components/TipSummary";
 
 const App = () => {
   return (
-    <main className="font-space-mono text-sm text-gray-500 bg-primary/25 min-h-screen sm:flex sm:flex-col sm:items-center sm:justify-center sm:gap-8">
+    <main className="font-space-mono text-xs text-gray-500 bg-primary/25 min-h-screen sm:flex sm:flex-col sm:items-center sm:justify-center sm:gap-8">
       <div className="flex justify-center py-10">
         <Logo />
       </div>
