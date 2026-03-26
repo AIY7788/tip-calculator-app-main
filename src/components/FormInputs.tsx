@@ -1,23 +1,27 @@
 import IconPerson from "../assets/images/icon-person.svg?react";
 import IconDollar from "../assets/images/icon-dollar.svg?react";
+import { useTip } from "../contexts/formContexts";
 
 const tips = ["5", "10", "15", "25", "50"];
 
 export const BillInput = () => {
+  const { bill, setBill } = useTip();
   return (
     <div>
       <div className="flex items-center justify-between">
         <label htmlFor="bill">Bill</label>
-        <span className="text-red-600">Can't be zero</span>
+        {bill == "0" && <span className="text-red-600">Can't be zero</span>}
       </div>
-      <div className="flex items-center bg-gray-200 px-3 mt-2 rounded-sm border border-transparent focus-within:bg-primary/10 focus-within:ring-1 focus-within:ring-primary transition duration-300">
+      <div className="flex items-center bg-blue-400/10 px-3 mt-2 rounded-sm input-hover input-focus">
         <IconDollar />
         <input
           type="number"
           name="bill"
           id="bill"
           placeholder="0"
-          className="w-full text-green-900 text-input text-end outline-none appearance-none"
+          value={bill ? bill : ""}
+          onChange={(e) => setBill(e.target.value)}
+          className="w-full hover:cursor-pointer focus:cursor-text text-green-900 text-input text-end outline-none appearance-none"
         />
       </div>
     </div>
@@ -25,6 +29,8 @@ export const BillInput = () => {
 };
 
 export const SelectTip = () => {
+  const { tip, customTip, setTip, setCustomTip } = useTip();
+
   return (
     <div>
       <p>Select Tip %</p>
@@ -35,15 +41,20 @@ export const SelectTip = () => {
               type="radio"
               name="tip_selection"
               id={"tip_" + t}
-              value={Number(t)}
+              value={t}
+              checked={tip === t && tip !== customTip}
+              onChange={() => {
+                setTip(t);
+                setCustomTip(""); // clear custom
+              }}
               className="peer/tip hidden"
             />
 
             <label
               htmlFor={"tip_" + t}
-              className="text-center w-full rounded-sm px-2 py-1 peer-checked/tip:bg-primary peer-checked/tip:text-green-900 bg-green-900 text-white hover:bg-primary-hover transition-colors duration-300 cursor-pointer md:text-lg"
+              className={`text-center w-full rounded-sm px-2 py-1 peer-checked/tip:bg-primary peer-checked/tip:text-green-900 bg-green-900 text-white ${tip !== t && "hover:bg-primary-hover"} transition-colors duration-300 cursor-pointer md:text-lg`}
             >
-              {t === "Custom" ? t : `${t}%`}
+              {t + "%"}
             </label>
           </div>
         ))}
@@ -51,7 +62,13 @@ export const SelectTip = () => {
           type="number"
           name="custom"
           placeholder="Custom"
-          className="bg-gray-200 text-end px-2 rounded-sm cursor-pointer md:text-base outline-none focus:placeholder:text-transparent placeholder:text-center border border-transparent focus-within:bg-primary/10 focus-within:ring-1 focus-within:ring-primary transition duration-300"
+          value={customTip}
+          onChange={(e) => {
+            const value = e.target.value;
+            setCustomTip(value);
+            setTip(value === "" ? "0" : value); // sync to main state
+          }}
+          className="bg-gray-200 text-end px-2 rounded-sm md:text-lg outline-none focus:cursor-text focus:placeholder:text-transparent placeholder:text-center input-hover input-focus"
         />
       </div>
     </div>
@@ -59,20 +76,24 @@ export const SelectTip = () => {
 };
 
 export const NumPeopleInput = () => {
+  const { people, setPeople } = useTip();
+
   return (
     <div>
       <div className="flex items-center justify-between">
         <label htmlFor="num_people">Number of People</label>
-        <span className="text-red-600">Can't be zero</span>
+        {people == "0" && <span className="text-red-600">Can't be zero</span>}
       </div>
-      <div className="flex items-center bg-gray-200 px-3 mt-2 rounded-sm border border-transparent focus-within:bg-primary/10 focus-within:ring-1 focus-within:ring-primary transition duration-300">
+      <div className="flex items-center bg-blue-400/10 px-3 mt-2 rounded-sm input-hover input-focus">
         <IconPerson />
         <input
           type="number"
           name="num_people"
           id="num_people"
           placeholder="0"
-          className="w-full text-green-900 text-input text-end outline-none appearance-none"
+          value={people ? people : ""}
+          onChange={(e) => setPeople(e.target.value)}
+          className="w-full hover:cursor-pointer focus:cursor-text text-green-900 text-input text-end outline-none appearance-none"
         />
       </div>
     </div>

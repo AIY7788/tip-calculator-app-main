@@ -1,5 +1,19 @@
+import { useTip } from "../contexts/formContexts";
+import { formatNum } from "../utils/formatNum";
 
 const TipSummary = () => {
+  const {
+    tipPerPerson, totalPerPerson,
+    setBill, setPeople, setTip, setCustomTip
+  } = useTip();
+
+  const handleReset = () => {
+    setBill('');
+    setPeople('');
+    setTip('');
+    setCustomTip('');
+  }
+
   return (
     <div className="mt-6 bg-green-900 py-6 px-4 rounded-xl flex flex-col gap-5 sm:min-w-[50%] sm:py-8 sm:px-6 sm:m-0 sm:gap-8">
       <div className="flex items-center justify-between">
@@ -8,7 +22,9 @@ const TipSummary = () => {
           <span>/ person</span>
         </div>
 
-        <p className="text-input text-primary md:text-3xl">$4.27</p>
+        <p className="text-input text-primary md:text-3xl">
+          ${formatNum(tipPerPerson)}
+        </p>
       </div>
       <div className="flex items-center justify-between">
         <div>
@@ -16,10 +32,12 @@ const TipSummary = () => {
           <span>/ person</span>
         </div>
 
-        <p className="text-input text-primary md:text-3xl">$32.79</p>
+        <p className="text-input text-primary md:text-3xl">
+          ${formatNum(totalPerPerson)}
+        </p>
       </div>
 
-      <button className="bg-primary p-2 uppercase text-green-900 rounded-sm cursor-pointer hover:bg-primary-hover transition-colors duration-300 sm:mt-auto">
+      <button onClick={handleReset} className="bg-primary p-2 uppercase text-green-900 rounded-sm cursor-pointer hover:bg-primary-hover transition-colors duration-300 sm:mt-auto">
         Reset
       </button>
     </div>
